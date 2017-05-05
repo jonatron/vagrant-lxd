@@ -1,0 +1,17 @@
+{
+  "name": "lxd/gentoo",
+  "description": "The latest gentoo LXD image.",
+  "versions": [
+    {
+      "version": "0.0.1",
+      "providers": [
+        {
+          "name": "lxd",
+          "url": "file:///data/ghopp/projects/vagrant/vagrant-lxd/gentoo_001_lxd.box",
+          "checksum_type": "sha1",
+          "checksum": "4f3d7bfe034fe9fb82179992fdc6803b6f96abfb"
+        }
+      ]
+    }
+  ]
+}
