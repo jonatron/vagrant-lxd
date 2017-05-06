@@ -1,0 +1,23 @@
+{
+  "provider": "lxd",
+  "bootstrap": {
+    "hostname": {
+      "exec": [
+        ["sed", "-i", "s/-lxc //", "/etc/init.d/hostname"],
+        ["sed", "-i", "s/LXC_NAME/<%= hostname %>/", "/etc/conf.d/hostname"],
+	["sed", "-i", "s/<%= container %>/<%= hostname %>/", "/etc/hostname"],
+        ["sed", "-i", "s/<%= container %>/<%= hostname %>/", "/etc/hosts"]
+      ]
+    },
+    "packages": {
+      "exec": [
+        ["emerge", "--update", "sudo"]
+      ]
+    },
+    "sudo": {
+      "exec": [
+        ["echo", "vagrant ALL=(ALL) NOPASSWD: ALL", ">>/etc/sudoers"]
+      ]
+    }
+  }
+}

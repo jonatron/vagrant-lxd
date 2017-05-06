@@ -7,6 +7,7 @@ module Vagrant
   module Lxd
     module Action
       action_root = Pathname.new(File.expand_path("../action", __FILE__))
+      autoload :Bootstrap, action_root.join("bootstrap")
       autoload :Create, action_root.join("create")
       autoload :EnsureImage, action_root.join("ensure_image")
       autoload :EnsureSsh, action_root.join("ensure_ssh")
@@ -31,11 +32,13 @@ module Vagrant
           end
           b.use action_start
           b.use EnsureSsh
+          b.use Bootstrap
         end
       end
 
       def self.action_start
         Vagrant::Action::Builder.new.tap do |b|
+          b.use Bootstrap
           b.use EnsureStarted
         end
       end

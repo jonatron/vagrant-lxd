@@ -155,7 +155,7 @@ module Vagrant
           begin
             @bridge = YAML.load(execute("network", "show", "vagrantbr0"))
           rescue
-            execute("network", "create", "vagrantbr0")
+            execute("network", "create", "vagrantbr0", "dns.mode=dynamic")
           end
         end
         @bridge
@@ -189,6 +189,10 @@ module Vagrant
           execute("exec", @name, "--", "/etc/init.d/sshd", "start")
         rescue
         end
+      end
+
+      def exec(*command)
+        execute("exec", @name, "--", *command)
       end
 
       # Taken from Virtualbox provider and modified in some parts.
