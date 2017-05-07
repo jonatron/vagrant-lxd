@@ -1,0 +1,17 @@
+{
+  "name": "lxd/debian/sid",
+  "description": "The latest debian/sid LXD image.",
+  "versions": [
+    {
+      "version": "0.0.1",
+      "providers": [
+        {
+          "name": "lxd",
+          "url": "file:///data/ghopp/projects/vagrant/vagrant-lxd/sid_001_lxd.box",
+          "checksum_type": "sha1",
+          "checksum": "a533654e7577931659c1cb457b13e6b184d4013d"
+        }
+      ]
+    }
+  ]
+}

@@ -28,17 +28,18 @@ module Vagrant
               b2.use EnsureImage
               b2.use Network
               b2.use Create
+              b2.use action_start
+              b2.use Bootstrap
+              b2.use EnsureSsh
+            else
+              b2.use action_start
             end
           end
-          b.use action_start
-          b.use EnsureSsh
-          b.use Bootstrap
         end
       end
 
       def self.action_start
         Vagrant::Action::Builder.new.tap do |b|
-          b.use Bootstrap
           b.use EnsureStarted
         end
       end

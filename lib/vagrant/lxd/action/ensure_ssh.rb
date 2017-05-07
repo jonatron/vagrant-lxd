@@ -10,8 +10,8 @@ module Vagrant
         def call(env)
           driver = env[:machine].provider.driver
 
-          env[:ui].info "--- #{env[:machine].box.directory} ---",
-            :prefix => false
+          # Currently I suppose this is the same on all linux distributions
+          # so it is not configured in the metadata of the box.
           driver.vagrant_user
           driver.enable_ssh
 

@@ -24,11 +24,13 @@ module Vagrant
               hostname = env[:machine].name
               data.each do |d|
                 d.collect! { |element| ERB.new(element).result(binding) }
-                driver.exec(*d)
-                env[:ui].info "--- #{d.inspect} ---", :prefix => false
+                env[:ui].info "--- #{action}: #{d.inspect} ---",
+                  :prefix => false
+                driver.exec(*d, :retryable => true)
               end
             end
           end
+          driver.restart
 
           @app.call(env)
         end

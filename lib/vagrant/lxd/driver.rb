@@ -72,12 +72,12 @@ module Vagrant
 
       def initialize(machine)
         @machine = machine
-        @name = "vagrant-#{machine.name}"
+        @name = "vagrant-#{machine.config.vm.hostname}"
+        @name = "vagrant-#{machine.name}" unless @name
         @logger = Log4r::Logger.new("vagrant::provider::lxd::driver")
 
         # This flag is used to keep track of interrupted state (SIGINT)
         @interrupted = false
-        @image = machine.box.name.split("/")[1] if machine.box
         bridge
       end
 
@@ -89,8 +89,12 @@ module Vagrant
         end.flatten(1)]
       end
 
+      def image
+        @machine.box.name.split("/")[1..-1].join("/") if @machine.box
+      end
+
       def image?
-        images.key? @image
+        images.key? image
       end
 
       # Get infos about all existing containers
@@ -130,7 +134,7 @@ module Vagrant
         args = [
           "image",
           "copy",
-          "#{remote}:#{@image}",
+          "#{remote}:#{image}",
           "local:",
           "--copy-aliases"
         ]
@@ -141,7 +145,7 @@ module Vagrant
       def create
         # network could be also attached right here if it turns out to be
         # a good idea.
-        execute("init", @image, @name, "-n", @bridge["name"])
+        execute("init", image, @name, "-n", @bridge["name"])
       end
 
       def start
@@ -161,15 +165,18 @@ module Vagrant
         @bridge
       end
 
+      def restart
+          execute("stop", @name)
+          execute("start", @name)
+      end
+
       def vagrant_user
         pwent = []
         while pwent.empty? do
           begin
-            pwent = execute(
-              "exec", @name, "getent", "passwd", "vagrant"
-            ).split(":")
+            pwent = exec("getent", "passwd", "vagrant").split(":")
           rescue
-            execute("exec", @name, "--", "useradd", "-m", "vagrant")
+            exec("useradd", "-m", "-s", "/bin/bash", "vagrant")
           end
         end
         execute(
@@ -178,17 +185,19 @@ module Vagrant
           "--uid=#{pwent[2]}",
           "--gid=#{pwent[3]}",
           "--mode=0400",
+          "-p",
           "#{@machine.box.directory}/vagrant.pub",
-          "#{@name}/#{pwent[5]}/.ssh/authorized_keys"
+          "#{@name}#{pwent[5]}/.ssh/authorized_keys"
         )
+        exec("chmod", "700", "#{pwent[5]}/.ssh")
       end
 
       def enable_ssh
-        begin
-          execute("exec", @name, "--", "rc-update", "add", "sshd", "default")
-          execute("exec", @name, "--", "/etc/init.d/sshd", "start")
-        rescue
-        end
+        #begin
+          service = @machine.box.metadata["bootstrap"]["sshd_service"]
+          service["exec"].each { |command| exec(*command) }
+        #rescue
+        #end
       end
 
       def exec(*command)
