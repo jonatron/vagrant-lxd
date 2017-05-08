@@ -49,6 +49,13 @@ module Vagrant
           b.use SSHExec
         end
       end
+
+      def self.action_provision
+        Vagrant::Action::Builder.new.tap do |b|
+          #b.use CheckAccessible
+          b.use Provision
+        end
+      end
     end
   end
 end

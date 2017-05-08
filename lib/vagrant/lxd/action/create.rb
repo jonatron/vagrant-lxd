@@ -18,6 +18,12 @@ module Vagrant
             env[:ui].info "--- #{driver.name} created ---", :prefix => false
           end
 
+          # TODO maybe not optimal, check if it would be better to include the
+          # pid of the init process to the id of the machine.
+          # Well, in that case the id changes with every restart which might
+          # not be feasable...
+          env[:machine].id = driver.name
+
           @app.call(env)
         end
       end

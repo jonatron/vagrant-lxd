@@ -7,9 +7,9 @@
       "providers": [
         {
           "name": "lxd",
-          "url": "file:///data/ghopp/projects/vagrant/vagrant-lxd/gentoo_001_lxd.box",
+          "url": "file:///home/hopp/projects/vagrant/vagrant-lxd/gentoo_001_lxd.box",
           "checksum_type": "sha1",
-          "checksum": "303573ec033c0eb1939df486f444c5bcc3f82d1e"
+          "checksum": "279b73b0a0f51368376a89283c842c5b474f9274"
         }
       ]
     }

@@ -11,7 +11,7 @@
     },
     "packages": {
       "exec": [
-        ["emerge", "--update", "sudo"]
+        ["emerge", "--update", "sudo", "dhcpcd"]
       ]
     },
     "sudo": {

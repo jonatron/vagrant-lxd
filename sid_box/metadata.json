@@ -10,7 +10,8 @@
     "packages": {
       "exec": [
         ["apt-get", "install", "-y", "sudo"],
-        ["apt-get", "install", "-y", "openssh-server"]
+        ["apt-get", "install", "-y", "openssh-server"],
+        ["apt-get", "install", "-y", "python"]
       ]
     },
     "sudo": {

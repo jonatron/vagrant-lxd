@@ -16,10 +16,10 @@ module Vagrant
         Provider
       end
 
-      #config(:lxd, :provider) do
-      #  require File.expand_path("../config", __FILE__)
-      #  Config
-      #end
+      config(:lxd, :provider) do
+        require_relative "config"
+        Config
+      end
 
       #synced_folder(:virtualbox) do
       #  require File.expand_path("../synced_folder", __FILE__)
