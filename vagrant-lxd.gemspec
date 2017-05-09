@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'vagrant/lxd/version'
+require 'vagrant-lxd/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "vagrant-lxd"
-  spec.version       = Vagrant::Lxd::VERSION
+  spec.version       = VagrantPlugins::ProviderLxd::VERSION
   spec.authors       = ["Georg Hopp"]
   spec.email         = ["hopp@silpion.de"]
 

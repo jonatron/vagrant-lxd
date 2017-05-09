@@ -3,8 +3,8 @@ require 'log4r'
 
 require 'vagrant/action/builder'
 
-module Vagrant
-  module Lxd
+module VagrantPlugins
+  module ProviderLxd
     module Action
       action_root = Pathname.new(File.expand_path("../action", __FILE__))
       autoload :Bootstrap, action_root.join("bootstrap")

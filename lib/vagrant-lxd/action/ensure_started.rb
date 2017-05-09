@@ -1,5 +1,5 @@
-module Vagrant
-  module Lxd
+module VagrantPlugins
+  module ProviderLxd
     module Action
       class EnsureStarted
         def initialize(app, env)

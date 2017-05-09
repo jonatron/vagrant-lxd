@@ -1,7 +1,7 @@
 require 'erb'
 
-module Vagrant
-  module Lxd
+module VagrantPlugins
+  module ProviderLxd
     module Action
       class Bootstrap
         def initialize(app, env)

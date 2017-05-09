@@ -1,5 +1,5 @@
-module Vagrant
-  module Lxd
+module VagrantPlugins
+  module CommandLxd
     class Command < Vagrant.plugin('2', :command)
       # def initialize(argv, env)
       #    super argv, env

@@ -1,7 +1,7 @@
 require "log4r"
 
-module Vagrant
-  module Lxd
+module VagrantPlugins
+  module ProviderLxd
     autoload :Driver, File.expand_path("../driver", __FILE__)
     autoload :Action, File.expand_path("../action", __FILE__)
 

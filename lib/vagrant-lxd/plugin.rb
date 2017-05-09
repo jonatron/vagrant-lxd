@@ -2,8 +2,8 @@
 # Test with something like:
 #  ~> bundle exec vagrant ls
 #
-module Vagrant
-  module Lxd
+module VagrantPlugins
+  module ProviderLxd
     class Plugin < Vagrant.plugin('2')
       name "Lxd"
 
@@ -26,10 +26,10 @@ module Vagrant
       #  SyncedFolder
       #end
 
-      command 'ls' do
-        require File.expand_path("../command", __FILE__)
-        Command
-      end
+      #command 'ls' do
+      #  require File.expand_path("../command", __FILE__)
+      #  Command
+      #end
 
       autoload :Action, File.expand_path("../action", __FILE__)
     end

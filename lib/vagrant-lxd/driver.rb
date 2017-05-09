@@ -63,8 +63,8 @@ require 'yaml'
 
 require 'vagrant/util/retryable'
 
-module Vagrant
-  module Lxd
+module VagrantPlugins
+  module ProviderLxd
     class Driver
       include Vagrant::Util::Retryable
 
