@@ -128,6 +128,14 @@ module Vagrant
         container_data["state"]["status"].downcase.to_sym
       end
 
+      def stop
+        execute "stop", @name
+      end
+
+      def destroy
+        execute "delete", @name
+      end
+
       def get_image(remote)
         return if image? # image already exists
 

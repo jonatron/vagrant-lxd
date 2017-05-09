@@ -13,6 +13,8 @@ module Vagrant
       autoload :EnsureSsh, action_root.join("ensure_ssh")
       autoload :EnsureStarted, action_root.join("ensure_started")
       autoload :Network, action_root.join("network")
+      autoload :Stop, action_root.join("stop")
+      autoload :Destroy, action_root.join("destroy")
 
       include Vagrant::Action::Builtin
 
@@ -35,6 +37,7 @@ module Vagrant
               b2.use action_start
             end
           end
+          b2.use action_provision
         end
       end
 
@@ -47,6 +50,18 @@ module Vagrant
       def self.action_ssh
         Vagrant::Action::Builder.new.tap do |b|
           b.use SSHExec
+        end
+      end
+
+      def self.action_halt
+        Vagrant::Action::Builder.new.tap do |b|
+          b.use Stop
+        end
+      end
+
+      def self.action_destroy
+        Vagrant::Action::Builder.new.tap do |b|
+          b.use Destroy
         end
       end
 
