@@ -90,7 +90,7 @@ module VagrantPlugins
       end
 
       def image
-        @machine.box.name if @machine.box
+        @machine.box.metadata["image"] if @machine.box
       end
 
       def image?

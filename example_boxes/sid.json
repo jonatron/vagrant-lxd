@@ -1,15 +1,15 @@
 {
-  "name": "debian/sid",
+  "name": "ghopp/sid",
   "description": "The latest debian/sid LXD image.",
   "versions": [
     {
-      "version": "0.0.1",
+      "version": "0.0.2",
       "providers": [
         {
           "name": "lxd",
-          "url": "file:///home/hopp/projects/vagrant/test/sid_001_lxd.box",
+          "url": "https://github.com/georghopp/vagrant-lxd/raw/master/example_boxes/sid_002_lxd.box",
           "checksum_type": "sha1",
-          "checksum": "21d7376327acdb7f36aa25ed89039248c6562415"
+          "checksum": "fc23c3fe375bd3383f076625f6904602482a9c34"
         }
       ]
     }

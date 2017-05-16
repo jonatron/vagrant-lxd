@@ -1,5 +1,6 @@
 {
   "provider": "lxd",
+  "image": "centos/7",
   "bootstrap": {
     "hostname": {
       "exec": [

@@ -1,15 +1,15 @@
 {
-  "name": "centos/7",
+  "name": "ghopp/centos7",
   "description": "The latest centos/7 LXD image.",
   "versions": [
     {
-      "version": "0.0.1",
+      "version": "0.0.2",
       "providers": [
         {
           "name": "lxd",
-          "url": "file:///home/hopp/projects/vagrant/test/centos_001_lxd.box",
+          "url": "https://github.com/georghopp/vagrant-lxd/raw/master/example_boxes/centos_002_lxd.box",
           "checksum_type": "sha1",
-          "checksum": "52c6717974bc76ecb9591e55d30baf90be9c68e4"
+          "checksum": "9b9e8e343c72b020ff21641bc18b6512df936047"
         }
       ]
     }

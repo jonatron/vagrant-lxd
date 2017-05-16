@@ -1,5 +1,6 @@
 {
   "provider": "lxd",
+  "image": "gentoo",
   "bootstrap": {
     "hostname": {
       "exec": [
