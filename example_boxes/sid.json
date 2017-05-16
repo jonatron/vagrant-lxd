@@ -1,5 +1,5 @@
 {
-  "name": "lxd/debian/sid",
+  "name": "debian/sid",
   "description": "The latest debian/sid LXD image.",
   "versions": [
     {
@@ -7,7 +7,7 @@
       "providers": [
         {
           "name": "lxd",
-          "url": "file:///home/hopp/projects/vagrant/vagrant-lxd/sid_001_lxd.box",
+          "url": "file:///home/hopp/projects/vagrant/test/sid_001_lxd.box",
           "checksum_type": "sha1",
           "checksum": "21d7376327acdb7f36aa25ed89039248c6562415"
         }

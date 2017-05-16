@@ -1,0 +1,34 @@
+{
+  "provider": "lxd",
+  "bootstrap": {
+    "hostname": {
+      "exec": [
+        ["sed", "-i", "s/-lxc //", "/etc/init.d/hostname"],
+        ["sed", "-i", "s/LXC_NAME/<%= hostname %>/", "/etc/conf.d/hostname"],
+        ["sed", "-i", "s/<%= container %>/<%= hostname %>/", "/etc/hostname"],
+        ["sed", "-i", "s/<%= container %>/<%= hostname %>/", "/etc/hosts"]
+      ]
+    },
+    "packages": {
+      "exec": [
+        ["emerge", "--update", "sudo", "dhcpcd"]
+      ]
+    },
+    "sudo": {
+      "exec": [
+        [
+          "sed",
+          "-i",
+          "/vagrant/b;$a\\\nvagrant ALL=(ALL) NOPASSWD: ALL\\\nDefaults:vagrant !requiretty",
+          "/etc/sudoers"
+        ]
+      ]
+    },
+    "sshd_service": {
+      "exec": [
+        ["rc-update", "add", "sshd", "default"],
+        ["/etc/init.d/sshd", "start"]
+      ]
+    }
+  }
+}

@@ -3,15 +3,14 @@
   "bootstrap": {
     "hostname": {
       "exec": [
-        ["sed", "-i", "s/-lxc //", "/etc/init.d/hostname"],
-        ["sed", "-i", "s/LXC_NAME/<%= hostname %>/", "/etc/conf.d/hostname"],
         ["sed", "-i", "s/<%= container %>/<%= hostname %>/", "/etc/hostname"],
         ["sed", "-i", "s/<%= container %>/<%= hostname %>/", "/etc/hosts"]
       ]
     },
     "packages": {
       "exec": [
-        ["emerge", "--update", "sudo", "dhcpcd"]
+        ["yum", "install", "-y", "sudo"],
+        ["yum", "install", "-y", "openssh-server"]
       ]
     },
     "sudo": {
@@ -19,15 +18,15 @@
         [
           "sed",
           "-i",
-          "/vagrant/b;$a\\\nvagrant ALL=(ALL) NOPASSWD: ALL",
+          "/vagrant/b;$a\\\nvagrant ALL=(ALL) NOPASSWD: ALL\\\nDefaults:vagrant !requiretty",
           "/etc/sudoers"
         ]
       ]
     },
     "sshd_service": {
       "exec": [
-        ["rc-update", "add", "sshd", "default"],
-        ["/etc/init.d/sshd", "start"]
+        ["systemctl", "enable", "sshd"],
+        ["systemctl", "start", "sshd"]
       ]
     }
   }

@@ -10,7 +10,5 @@ $ tar cvzf lxd.box ./metadata.json ./vagrant.pub
 
 The `lxd` provider right now just uses the default lxd images provided
 by the lxd images: remote. Upon start these will be provisioned with an
-vagrant ssh user and and the unsafe common pubkey of vagrant and
+vagrant ssh user and the unsafe common pubkey of vagrant and
 sshd will be enabled.
-
-Well, at least thats the idea for now.

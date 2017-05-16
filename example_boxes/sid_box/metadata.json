@@ -19,7 +19,7 @@
         [
           "sed",
           "-i",
-          "/vagrant/b;$a\\\nvagrant ALL=(ALL) NOPASSWD: ALL",
+          "/vagrant/b;$a\\\nvagrant ALL=(ALL) NOPASSWD: ALL\\\nDefaults:vagrant !requiretty",
           "/etc/sudoers"
         ]
       ]
