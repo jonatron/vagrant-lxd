@@ -1,4 +1,4 @@
-# vagrant-lxc
+# vagrant-lxD
 
 [LXD](https://www.ubuntu.com/containers/lxd) provider for
 [Vagrant](http://www.vagrantup.com/) 1.9.3
