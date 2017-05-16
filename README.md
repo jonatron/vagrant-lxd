@@ -42,7 +42,7 @@ Currently the provider knows only one config option.
 ```ruby
 Vagrant.configure("2") do |config|
   config.vm.provider :lxd do |lxd|
-    lxd.privileged = true
+    lxd.privileged
   end
 end
 ```
