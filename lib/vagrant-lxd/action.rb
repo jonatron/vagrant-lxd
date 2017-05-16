@@ -37,7 +37,7 @@ module VagrantPlugins
               b2.use action_start
             end
           end
-          b2.use action_provision
+          b.use action_provision
         end
       end
 
