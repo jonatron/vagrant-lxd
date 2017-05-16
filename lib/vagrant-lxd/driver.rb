@@ -90,7 +90,7 @@ module VagrantPlugins
       end
 
       def image
-        @machine.box.name.split("/")[1..-1].join("/") if @machine.box
+        @machine.box.name if @machine.box
       end
 
       def image?
@@ -117,9 +117,13 @@ module VagrantPlugins
       end
 
       def ipv4
-        network["eth0"]["addresses"].select do |d|
-          d["family"] == "inet"
-        end[0]["address"]
+        interface = []
+        while interface.empty?
+          interface = network["eth0"]["addresses"].select do |d|
+            d["family"] == "inet"
+          end
+        end
+        interface[0]["address"]
       end
 
       def state
@@ -150,10 +154,16 @@ module VagrantPlugins
         execute(*args)
       end
 
-      def create
+      def create(config)
         # network could be also attached right here if it turns out to be
         # a good idea.
-        execute("init", image, @name, "-n", @bridge["name"])
+        args = ["-n", @bridge["name"]]
+
+        if config.privileged?
+          args += ["-c", "security.privileged=true"]
+        end
+
+        execute("init", image, @name, "-n", @bridge["name"], *args)
       end
 
       def start
@@ -220,7 +230,7 @@ module VagrantPlugins
         opts = command.pop if command.last.is_a?(Hash)
 
         tries = 0
-        tries = 3 if opts[:retryable]
+        tries = 10 if opts[:retryable]
 
         # Variable to store our execution result
         r = nil

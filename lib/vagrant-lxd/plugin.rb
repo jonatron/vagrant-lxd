@@ -17,7 +17,7 @@ module VagrantPlugins
       end
 
       config(:lxd, :provider) do
-        require_relative "config"
+        require File.expand_path("../config", __FILE__)
         Config
       end
 
