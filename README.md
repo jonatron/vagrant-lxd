@@ -1,36 +1,63 @@
-# Vagrant::Lxd
+# vagrant-lxc
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/vagrant/lxd`. To experiment with that code, run `bin/console` for an interactive prompt.
+[LXD](https://www.ubuntu.com/containers/lxd) provider for
+[Vagrant](http://www.vagrantup.com/) 1.9.3
 
-TODO: Delete this and the text above, and describe your gem
+This is a Vagrant plugin that allows it to control and provision Linux
+Containers as an alternative to the built in VirtualBox provider for Linux
+hosts.
+
+## Features
+
+* Start and stop LXD managed container.
+* No port forwarding right now.
+* Uses LXD managed bridge network.
+
+## Requirements
+
+* [Vagrant](http://www.vagrantup.com/downloads.html) (tested with 1.9.3)
+* lxd (tested with 2.11)
+* All lxd dependencies (especially dnsmasq for LXD managed networking)
+
+I tested the plugin on gentoo, installed via `vagrant plugin install`.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+As long as is not publicly available at rubygems pleace clone the repo,
+Change to the checked out directory ad do:
 
-```ruby
-gem 'vagrant-lxd'
+```
+rake build
+vagrant plugin install pkg/vagrant-lxd-0.0.1.gem
 ```
 
-And then execute:
+## Boxes
 
-    $ bundle
+Some example boxes are provided within the example_box directory.
 
-Or install it yourself as:
+## Configuration
 
-    $ gem install vagrant-lxd
+Currently the provider knows only one config option.
 
-## Usage
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.provider :lxd do |lxd|
+    lxd.privileged = true
+  end
+end
+```
 
-TODO: Write usage instructions here
+This will create a privileged instead of an unprivileged container.
 
-## Development
+### Container naming
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+The defined VM name will be prefixed with vagrant. At the moment there is
+no logic to make them uniqe.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/vagrant-lxd.
-
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
