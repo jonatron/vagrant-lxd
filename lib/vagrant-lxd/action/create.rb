@@ -9,13 +9,14 @@ module VagrantPlugins
 
         def call(env)
           driver = env[:machine].provider.driver
+          config = []
 
           if driver.container?
-            env[:ui].info "--- Container fount ---", :prefix => false
+            env[:ui].info "--- Container fount ---"
           else
-            env[:ui].info "--- Create #{driver.name} ---", :prefix => false
-            driver.create
-            env[:ui].info "--- #{driver.name} created ---", :prefix => false
+            env[:ui].info "--- Create #{driver.name} ---"
+            driver.create env[:machine].provider_config
+            env[:ui].info "--- #{driver.name} created ---"
           end
 
           # TODO maybe not optimal, check if it would be better to include the

@@ -6,10 +6,10 @@ module VagrantPlugins
       # end
 
       def execute
-        @env.ui.info("my own plugin", :prefix => false)
-        @env.ui.info("--- #{@env.inspect} ---", :prefix => false)
-        @env.ui.info("--- #{@local_data_path} ---", :prefix => false)
-        @env.ui.info("--- #{@env.active_machines} ---", :prefix => false)
+        @env.ui.info "my own plugin"
+        @env.ui.info "--- #{@env.inspect} ---"
+        @env.ui.info "--- #{@local_data_path} ---"
+        @env.ui.info "--- #{@env.active_machines} ---"
       end
     end
   end

@@ -14,7 +14,7 @@ module VagrantPlugins
           bs_data = env[:machine].box.metadata["bootstrap"]
 
           bs_data.each do |name, actions|
-            env[:ui].info "--- Bootstrap #{name} ---", :prefix => false
+            env[:ui].info "--- Bootstrap #{name} ---"
             actions.each do |action, data|
               # right now I do not handle differnet actions just return if
               # action is not "exec".
@@ -24,8 +24,7 @@ module VagrantPlugins
               hostname = env[:machine].name
               data.each do |d|
                 d.collect! { |element| ERB.new(element).result(binding) }
-                env[:ui].info "--- #{action}: #{d.inspect} ---",
-                  :prefix => false
+                env[:ui].info "--- #{action}: #{d.inspect} ---"
                 driver.exec(*d, :retryable => true)
               end
             end

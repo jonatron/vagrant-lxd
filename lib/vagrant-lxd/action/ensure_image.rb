@@ -11,15 +11,13 @@ module VagrantPlugins
           box = env[:machine].box
           driver = env[:machine].provider.driver
 
-          env[:ui].info "--- check image for #{env[:machine].name} ---",
-            :prefix => false
+          env[:ui].info "--- check image for #{env[:machine].name} ---"
           if driver.image?
-            env[:ui].info "--- Image found ---", :prefix => false
+            env[:ui].info "--- Image found ---"
           else
-            env[:ui].info "--- Image NOT found (downloading) ---",
-              :prefix => false
+            env[:ui].info "--- Image NOT found (downloading) ---"
             driver.get_image("images")
-            env[:ui].info "--- Image download done ---", :prefix => false
+            env[:ui].info "--- Image download done ---"
             # TODO maybe we need to check again if the image really exists
             # now.
           end

@@ -11,14 +11,11 @@ module VagrantPlugins
           driver = env[:machine].provider.driver
 
           if driver.state != :running
-            env[:ui].info "--- start #{driver.name} ---",
-              :prefix => false
+            env[:ui].info "--- start #{driver.name} ---"
             driver.start
-            env[:ui].info "--- #{driver.name} started ---",
-              :prefix => false
+            env[:ui].info "--- #{driver.name} started ---"
           else
-            env[:ui].info "--- #{driver.name} alreay running ---",
-              :prefix => false
+            env[:ui].info "--- #{driver.name} alreay running ---"
           end
 
           @app.call(env)
